@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Almost Pretty Enough — Final Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--pow:#f6dde0;--blush:#efc3ca;--cream:#fbf5ee;--white:#fffdf9;--rose:#b9707c;--bur:#5c1a2b;--ink:#3a1620;--sil:#c9ccd2;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300}
+.s{position:absolute;inset:0;padding:5vh 6vw 9vh;display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .7s,transform .7s,visibility .7s}
+.s.on{opacity:1;visibility:visible;transform:none}
+.s>*{animation:none}.s.on .r{animation:rise .9s both}.s.on .r:nth-child(2){animation-delay:.15s}.s.on .r:nth-child(3){animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+h1,h2,h3,.big{font-family:var(--serif);font-weight:500;line-height:.95;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4.4vw,64px)}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--rose);margin-bottom:2vh;font-weight:400}
+.small{font-size:clamp(11px,1.05vw,15px);letter-spacing:.04em;line-height:1.5;color:#6b4650}
+.cap{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose)}
+em{font-style:italic;color:var(--rose)}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.9vw,44px);line-height:1.15}
+.hl{font-family:var(--serif);font-size:clamp(22px,3vw,46px);line-height:1.1;font-weight:500;border-top:1px solid var(--sil);padding-top:2vh;margin-top:3vh}
+.hl b{font-weight:500;color:var(--rose);font-style:italic}
+.row{display:flex;gap:2vw;align-items:stretch}.col{flex:1}
+.pill{border:1px solid var(--rose);border-radius:99px;padding:.7vh 1.1vw;font-size:clamp(10px,.95vw,13px);letter-spacing:.12em;text-transform:uppercase;color:var(--bur);background:rgba(255,253,249,.6);white-space:nowrap}
+.card{background:var(--white);border:1px solid #ead3d6;padding:1.6vh 1.4vw}
+.arr{color:var(--rose);font-family:var(--serif);font-size:1.6em}
+/* chrome */
+#nav{position:fixed;left:0;right:0;bottom:0;height:8vh;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;z-index:9}
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--rose);z-index:9;transition:width .5s}
+.btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--rose);background:rgba(255,253,249,.7);color:var(--bur);font-size:18px;cursor:pointer}
+.btn:hover{background:var(--blush)}
+#num{font-family:var(--serif);font-size:18px;letter-spacing:.2em;color:var(--bur)}
+.mirror{border-radius:50% 50% 46% 46%/38% 38% 62% 62%;background:radial-gradient(ellipse at 35% 25%,#fff 0,#f7e8ea 35%,#e8c9cf 70%,#d9aeb7 100%);border:10px solid transparent;background-clip:padding-box;box-shadow:0 0 0 7px var(--sil),0 0 0 9px #fff,0 0 0 10px #aab0b8,0 30px 80px rgba(185,112,124,.35),inset 0 0 60px rgba(255,255,255,.8)}
+/* slide 1 */
+#s1{background:radial-gradient(circle at 70% 45%,#fff 0,var(--pow) 55%,var(--blush) 120%);flex-direction:row;align-items:center;gap:4vw}
+#s1 h1{font-size:clamp(54px,10vw,160px);letter-spacing:.02em}
+#s1 h1 i{color:var(--rose)}
+#s1 .mirror{width:min(30vw,52vh);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;text-align:center;padding:3vw;font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.1vw,32px);color:var(--bur);flex:none}
+.glow{background:radial-gradient(circle at 70% 30%,#fff 0,transparent 50%)}
+/* 2 */
+#s2{background:var(--white)}
+.flow{display:flex;align-items:center;gap:.6vw;flex-wrap:wrap;margin:3vh 0}
+.say{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.9vw,27px);color:var(--rose)}
+.clash{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2vw}
+.clash div{font-family:var(--serif);font-size:clamp(15px,1.7vw,24px);line-height:1.15;border-left:2px solid var(--rose);padding-left:1vw}
+.clash div span{display:block;color:var(--rose);font-style:italic}
+/* 3 */
+#s3{background:linear-gradient(90deg,var(--pow) 0,var(--cream) 50%,#ead0d3 100%)}
+.pp{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:2vw;align-items:center}
+.pp ul{list-style:none;font-family:var(--serif);font-size:clamp(17px,2vw,30px);line-height:1.45}
+.pp .l h3,.pp .r2 h3{font-size:clamp(22px,2.4vw,38px);margin-bottom:1.5vh}
+.pp .r2{text-align:right;color:var(--bur)}
+.pp .mid{text-align:center}
+.pairs{display:flex;justify-content:space-between;gap:1vw;margin-top:3vh}
+.pairs .pill{flex:1;text-align:center}
+/* 4-6 analytic */
+.an{background:var(--white);background-image:linear-gradient(#f3e4e6 1px,transparent 1px),linear-gradient(90deg,#f3e4e6 1px,transparent 1px);background-size:40px 40px}
+.eq{display:flex;align-items:center;gap:.7vw;flex-wrap:wrap}
+.arch{display:grid;grid-template-columns:repeat(5,1fr);gap:.8vw}
+.arch .card b{display:block;font-family:var(--serif);font-size:clamp(14px,1.5vw,22px);color:var(--bur);font-weight:600}
+.kw{display:flex;flex-direction:column;gap:.8vh;align-items:flex-start}
+.fl{display:flex;flex-direction:column;gap:.4vh;align-items:stretch}
+.fl .card{text-align:center}
+.fl .card b{font-family:var(--serif);font-size:clamp(18px,2vw,30px);color:var(--bur)}
+/* 5 */
+.expl{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1vw;align-items:center}
+.expl .card b{display:block;font-size:11px;letter-spacing:.2em;color:var(--rose);font-weight:500}
+.expl .card span{font-family:var(--serif);font-size:clamp(14px,1.5vw,22px)}
+.vanity{grid-row:span 3;text-align:center}
+.vanity .mirror{width:min(13vw,24vh);aspect-ratio:3/4;margin:0 auto 1.5vh}
+.vanity .table{height:3.2vh;background:linear-gradient(#e8e9ec,#b8bcc4);border-radius:3px;width:70%;margin:0 auto}
+.plan{display:flex;align-items:center;gap:.6vw;margin-top:2vh;flex-wrap:wrap}
+.plan .pill{background:var(--pow)}
+.mock{position:absolute;right:0;top:-3vh;font-size:9px;letter-spacing:.2em;color:var(--rose);text-transform:uppercase}
+/* 6 */
+.venn{position:relative;width:min(34vw,56vh);aspect-ratio:1;flex:none}
+.venn i{position:absolute;width:44%;height:44%;border-radius:50%;border:1px solid var(--rose);background:rgba(239,195,202,.28);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:clamp(9px,.9vw,13px);letter-spacing:.14em;color:var(--bur);mix-blend-mode:multiply}
+.six{display:grid;grid-template-columns:1fr 1fr;gap:1vw;margin:2vh 0}
+.not{display:flex;gap:.5vw;flex-wrap:wrap;margin-top:1vh}
+.not .pill{text-decoration:line-through;opacity:.8}
+/* 7 */
+#s7{background:var(--cream);padding:0}
+.art{display:flex;height:100%}
+.art>div{flex:1;padding:6vh 4vw 10vh;display:flex;flex-direction:column;justify-content:center;gap:1.6vh}
+.art>div:first-child{background:var(--pow)}.art>div:last-child{background:var(--bur);color:var(--cream)}
+.art h3{font-size:clamp(32px,4.2vw,64px)}
+.frame{border:1px solid currentColor;opacity:.9;aspect-ratio:16/8;max-height:24vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:1vw;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.art .vs{display:grid;grid-template-columns:1fr 1fr;gap:1vw}
+.art .vs div{border-top:1px solid currentColor;padding-top:1vh;font-size:clamp(12px,1.15vw,17px);line-height:1.4}
+.art .vs b{display:block;font-size:10px;letter-spacing:.2em;font-weight:500}
+.art .src{font-size:9px;letter-spacing:.1em;opacity:.7}
+.art .cap{color:inherit;opacity:.8}
+.art .tag{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,26px)}
+/* 8 */
+#s8{background:linear-gradient(135deg,var(--pow),#f0cdd2);padding-top:3vh}
+.as{display:grid;grid-template-columns:repeat(4,1fr);gap:.7vw}
+.as .card{padding:1vh .8vw;font-size:clamp(10px,1vw,14px);line-height:1.3}
+.as .card u{text-decoration:none;display:block;color:#8a6a72;margin-bottom:.6vh}
+.as .card b{display:block;font-weight:500;color:var(--bur);border-top:1px dashed var(--rose);padding-top:.6vh}
+.as .card i{font-style:normal;font-size:8px;letter-spacing:.2em;color:var(--rose);display:block}
+.as .card:nth-child(odd){transform:rotate(-.6deg)}.as .card:nth-child(even){transform:rotate(.5deg)}
+.as .win{grid-column:span 1;background:var(--bur);color:var(--cream);display:flex;align-items:center;font-family:var(--serif);font-size:clamp(14px,1.5vw,22px);line-height:1.1}
+/* 9 */
+#s9{background:radial-gradient(circle at 50% 40%,#fff,var(--pow));align-items:center;text-align:center}
+#s9 .mirror{width:min(22vw,40vh);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:clamp(30px,4vw,60px);color:var(--bur);margin:0 auto 3vh}
+.f{opacity:0;transform:translateY(12px);transition:opacity .9s,transform .9s;max-height:0;overflow:hidden}
+.f.show{opacity:1;transform:none;max-height:40vh}
+.f.show.keep{margin-top:1.4vh}
+#s9 .big{font-size:clamp(26px,4vw,60px)}
+.s{isolation:isolate}.dc{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:-1}.d{position:absolute}
+.pr{filter:drop-shadow(0 4px 4px rgba(185,112,124,.4))}.fl2{transform:rotate(var(--r,0deg));animation:bob 7s ease-in-out infinite;filter:drop-shadow(0 14px 18px rgba(139,60,80,.28))}
+@keyframes bob{50%{transform:translateY(-14px) rotate(var(--r,0deg))}}
+.tw{animation:tw 3.4s ease-in-out infinite;filter:drop-shadow(0 0 4px #d98d9b)}@keyframes tw{0%,100%{opacity:.2;transform:scale(.55)}50%{opacity:1;transform:scale(1.1)}}
+.mirror{position:relative}.mirror::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.8) 50%,transparent 62%);background-size:260% 100%;background-position:130% 0;animation:sheen 7s ease-in-out infinite;pointer-events:none}
+@keyframes sheen{0%,55%{background-position:130% 0}100%{background-position:-30% 0}}
+.bulbs{position:absolute;left:-9%;top:-9%;width:118%;height:118%;overflow:visible;pointer-events:none;filter:drop-shadow(0 0 5px #fff1d4) drop-shadow(0 0 14px rgba(255,205,185,.9));animation:glow 4s ease-in-out infinite}
+@keyframes glow{50%{opacity:.7}}
+#s1 h1 i{background:linear-gradient(90deg,#b9707c,#efc3ca,#c9ccd2,#b9707c);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 6s linear infinite}@keyframes shim{to{background-position:220% 0}}
+.s.an .dc{opacity:.8}
+.rd{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:1.4vw;margin-top:2.2vh;align-items:start}
+.rd .card{padding:1.4vh 1.1vw}.rd .small{font-size:clamp(10px,1vw,14px)}
+.ba{display:flex;align-items:center;gap:.5vw;margin:1vh 0;flex-wrap:wrap}.ba .pill{font-size:clamp(9px,.85vw,12px);white-space:normal}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:.5vw;font-size:clamp(11px,1.1vw,16px)}.chips div{border-top:1px solid var(--sil);padding-top:.5vh}.chips b{color:var(--bur);font-family:var(--serif);font-size:1.25em;font-weight:600}
+.vs2{display:flex;align-items:center;gap:.6vw;margin-top:1vh;font-family:var(--serif);font-size:clamp(13px,1.3vw,19px);line-height:1.1}
+</style></head>
+<body>
+<div id="bar"></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="gp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#f6d3d9"/><stop offset="1" stop-color="#d79aa6"/></linearGradient>
+<linearGradient id="gc" x1="0" x2="1"><stop offset="0" stop-color="#8f949c"/><stop offset=".35" stop-color="#fff"/><stop offset=".7" stop-color="#c9ccd2"/><stop offset="1" stop-color="#7d828b"/></linearGradient>
+<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a8475c"/><stop offset="1" stop-color="#5c1a2b"/></linearGradient>
+<linearGradient id="gs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".5" stop-color="#efc3ca" stop-opacity=".75"/><stop offset="1" stop-color="#d79aa6" stop-opacity=".55"/></linearGradient>
+<symbol id="bottle" viewBox="0 0 100 160"><rect x="40" y="2" width="20" height="26" rx="4" fill="url(#gc)"/><rect x="44" y="28" width="12" height="10" fill="url(#gc)"/><path d="M18 52Q18 38 34 38H66Q82 38 82 52V138Q82 156 64 156H36Q18 156 18 138Z" fill="url(#gp)" stroke="#fff" stroke-width="2"/><rect x="32" y="78" width="36" height="34" rx="3" fill="none" stroke="#b9707c" stroke-width=".8"/><path d="M26 52V132" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/></symbol>
+<symbol id="lip" viewBox="0 0 40 150"><path d="M10 50V20Q10 6 22 2L30 8V50Z" fill="url(#gb)"/><rect x="6" y="50" width="28" height="20" fill="url(#gc)"/><rect x="4" y="70" width="32" height="76" rx="4" fill="url(#gc)"/><path d="M12 76V138" stroke="#fff" stroke-width="2" opacity=".7"/></symbol>
+<symbol id="cmp" viewBox="0 0 120 120"><circle cx="60" cy="60" r="56" fill="url(#gc)"/><circle cx="60" cy="60" r="44" fill="url(#gp)" stroke="#fff" stroke-width="3"/><path d="M36 44Q50 28 74 32" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="sp" viewBox="0 0 40 40"><path d="M20 0Q22 18 40 20Q22 22 20 40Q18 22 0 20Q18 18 20 0Z" fill="#fff"/></symbol>
+<symbol id="pearls" viewBox="0 0 400 300"><path d="M-10 10C60 260 280 280 410 40" fill="none" stroke="#fffaf6" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 19"/><path d="M-12 12C58 262 278 282 408 42" fill="none" stroke="#ecc9cf" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 19" opacity=".8"/></symbol>
+<symbol id="rib" viewBox="0 0 800 200"><path d="M0 40C200 0 300 160 520 110S760 60 800 140V190C760 110 600 190 480 190C300 190 220 40 0 100Z" fill="url(#gs)"/><path d="M0 52C200 14 300 170 520 122S760 74 800 150" fill="none" stroke="#fff" stroke-width="2" opacity=".8"/></symbol>
+</defs></svg>
+
+<section class="s" id="s1"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="left:-3vw;top:-4vh;width:38vw"><use href="#pearls"/></svg>
+<svg class="d pr" viewBox="0 0 400 300" style="right:-3vw;top:-4vh;width:30vw;transform:scaleX(-1)"><use href="#pearls"/></svg>
+<svg class="d" viewBox="0 0 800 200" style="left:0;bottom:4vh;width:100vw;opacity:.6"><use href="#rib"/></svg>
+<svg class="d fl2" viewBox="0 0 100 160" style="left:45vw;bottom:11vh;height:27vh;--r:-8deg"><use href="#bottle"/></svg>
+<svg class="d fl2" viewBox="0 0 40 150" style="left:55vw;bottom:11vh;height:21vh;--r:14deg;animation-delay:-2s"><use href="#lip"/></svg>
+<svg class="d fl2" viewBox="0 0 120 120" style="left:48vw;top:14vh;width:8vw;--r:-12deg;animation-delay:-4s"><use href="#cmp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:44vw;top:30vh;width:2.2vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:58vw;top:20vh;width:1.6vw;animation-delay:-1s"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:36vw;bottom:16vh;width:1.8vw;animation-delay:-2s"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:2vw;bottom:20vh;width:2vw;animation-delay:-.5s"><use href="#sp"/></svg>
+</div>
+ <div style="flex:1">
+  <div class="eyebrow r">Interactive Media · Final Proposal</div>
+  <h1 class="r">ALMOST<br>PRETTY<br><i>ENOUGH</i></h1>
+  <p class="small r" style="max-width:34ch;margin-top:3vh">An immersive installation about beauty, self-expression, self-correction, and control.</p>
+  <p class="cap r" style="margin-top:3vh;font-size:12px">Who decides when you’re ready?</p>
+ </div>
+ <div class="mirror r"><svg class="bulbs" viewBox="0 0 300 400"><ellipse cx="150" cy="200" rx="168" ry="222" fill="none" stroke="#fff8e8" stroke-width="9" stroke-linecap="round" stroke-dasharray="0 30"/></svg><span>Who decides<br>when you’re<br>ready?</span></div>
+</section>
+
+<section class="s" id="s2"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="right:-4vw;top:-5vh;width:30vw;transform:scaleX(-1)"><use href="#pearls"/></svg>
+<svg class="d fl2" viewBox="0 0 100 160" style="right:2vw;bottom:9vh;height:15vh;--r:10deg;opacity:.7"><use href="#bottle"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:22vw;top:9vh;width:2vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:3vw;top:10vh;width:1.6vw;animation-delay:-1.4s"><use href="#sp"/></svg>
+</div>
+ <div class="eyebrow r">01 · The Concept</div>
+ <div class="row r" style="gap:4vw;align-items:center">
+  <div class="col">
+   <h2>A dressing room that <em>never</em> says “you’re ready.”</h2>
+   <p class="small" style="margin:2vh 0">Vanity · mirror · makeup · perfume · jewelry · hair accessories · pink light · soft music</p>
+   <p class="quote">“You look beautiful.”</p>
+   <p class="say" style="margin-top:1vh">Maybe a little more blush. · What about your hair? · Try another shade. · Almost ready. · One more thing.</p>
+  </div>
+  <div class="col clash">
+   <div>BE NATURAL.<span>MAKE MORE EFFORT.</span></div>
+   <div>STAND OUT.<span>DON’T TRY TOO HARD.</span></div>
+   <div>BE CONFIDENT.<span>FIX THIS FIRST.</span></div>
+  </div>
+ </div>
+ <div class="flow r"><span class="pill">Enter</span><span class="arr">→</span><span class="pill">Get ready</span><span class="arr">→</span><span class="pill">Interact</span><span class="arr">→</span><span class="pill">More advice</span><span class="arr">→</span><span class="pill">Contradiction</span><span class="arr">→</span><span class="pill">Realization</span><span class="arr">→</span><span class="pill" style="background:var(--bur);color:var(--cream)">Leave</span></div>
+ <div class="hl r">The only way to finish getting ready is <b>to stop listening.</b></div>
+</section>
+
+<section class="s" id="s3"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="left:0;top:-14vh;width:100vw;height:30vh" preserveAspectRatio="none"><use href="#pearls"/></svg>
+<svg class="d" viewBox="0 0 800 200" style="left:0;bottom:6vh;width:100vw;opacity:.5"><use href="#rib"/></svg>
+<svg class="d fl2" viewBox="0 0 120 120" style="left:3vw;bottom:13vh;width:8vw;--r:-10deg"><use href="#cmp"/></svg>
+<svg class="d fl2" viewBox="0 0 40 150" style="right:5vw;bottom:13vh;height:18vh;--r:16deg"><use href="#lip"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:47vw;top:20vh;width:2vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:30vw;bottom:22vh;width:1.5vw;animation-delay:-1s"><use href="#sp"/></svg>
+</div>
+ <div class="eyebrow r">02 · What is it actually about?</div>
+ <h2 class="r" style="margin-bottom:3vh">Pleasure <em>↔</em> Pressure</h2>
+ <div class="pp r">
+  <div class="l"><h3>Self-expression</h3><ul><li>getting ready</li><li>makeup · hair · perfume</li><li>fashion · creativity</li><li>ritual · confidence</li><li>girlhood</li></ul></div>
+  <div class="mid"><div class="big" style="font-size:clamp(26px,3.4vw,52px)">When does<br><em>“I want to”</em><br>become<br><em>“I need to”</em>?</div></div>
+  <div class="r2"><h3>Self-correction</h3><ul><li>one more thing</li><li>comparison</li><li>improvement</li><li>expectations</li><li>perfection · never finished</li></ul></div>
+ </div>
+ <div class="pairs r"><span class="pill">Self-expression ↔ Self-correction</span><span class="pill">Pleasure ↔ Pressure</span><span class="pill">Agency ↔ Control</span></div>
+ <p class="small r" style="margin-top:2vh;text-align:center">Not “beauty is bad.” Getting ready can be joyful, creative, comforting. The question is where the ritual turns into endless correction.</p>
+</section>
+
+<section class="s an" id="s4"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="right:-5vw;top:-6vh;width:22vw;transform:scaleX(-1)"><use href="#pearls"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:3vw;bottom:10vh;width:2vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:2vw;top:8vh;width:1.5vw;animation-delay:-1s"><use href="#sp"/></svg>
+</div>
+ <div class="eyebrow r">03 · Reading 1 — Ole W. Fischer</div>
+ <h2 class="r">Immersion isn’t a <em>headset.</em></h2>
+ <div class="rd r">
+  <div class="card"><p class="cap">My note</p><p class="quote" style="font-size:clamp(15px,1.7vw,25px);margin:.8vh 0">I always associated immersion with VR. Music or architecture can create the same feeling.</p><p class="small"><b>My question:</b> if immersion happens in our minds, can two people live the same room completely differently?</p></div>
+  <div class="card"><p class="cap">Architecture · your body is inside it</p>
+   <div class="ba"><span class="pill">Before: mirror = artwork</span><span class="arr">→</span><span class="pill" style="background:var(--bur);color:var(--cream)">After: room = system</span></div>
+   <div class="chips"><div><b>Vanity</b> → sit</div><div><b>Mirror</b> → look at yourself</div><div><b>Objects</b> → touch</div><div><b>Lighting</b> → flatter</div><div><b>Layout</b> → move</div><div><b>Exit</b> → decide</div></div></div>
+  <div class="card"><p class="cap">Fischer on Magritte’s <i>Treachery of Images</i></p><p class="big" style="font-size:clamp(20px,2.3vw,34px);margin:1vh 0">Representation <em>≠</em> experience</p><div class="small">A photo shows a room — not how it feels inside it.</div><div class="vs2"><div>Watching the pressure</div><span class="arr">vs</span><div>Placed inside the system producing it</div></div></div>
+ </div>
+ <div class="hl r" style="margin-top:2.2vh">It changed my design: the mirror stopped being the whole artwork. <b>The entire room became the system.</b></div>
+ <p class="small r" style="margin-top:1vh">Visitors feel free — but I decided where they sit, what they see, what the room can say. <b>That is control.</b> Why a physical installation, not a video or screen. (Benjamin: reproduction changes how we value the original.)</p>
+</section>
+
+<section class="s an" id="s4b"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="left:-5vw;top:-6vh;width:22vw;transform:none"><use href="#pearls"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:3vw;bottom:10vh;width:2vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:2vw;top:8vh;width:1.5vw;animation-delay:-1s"><use href="#sp"/></svg>
+</div>
+ <div class="eyebrow r">04 · Reading 2 — Katja Kwastek</div>
+ <h2 class="r">Participation <em>→</em> flow <em>→</em> reflection</h2>
+ <div class="rd r" style="grid-template-columns:1fr 1.1fr 1.15fr">
+  <div class="fl">
+   <div class="card"><b>Flow</b><div class="small">enjoy the ritual · mirror responds</div></div><div class="arr" style="text-align:center">↓</div>
+   <div class="card"><b>Interruption</b><div class="small">“One more thing.” Then contradictions.</div></div><div class="arr" style="text-align:center">↓</div>
+   <div class="card" style="background:var(--bur);color:var(--cream)"><b style="color:var(--cream)">Reflection</b><div class="small" style="color:var(--blush)">Nothing I do will make it say I’m finished.</div></div>
+  </div>
+  <div style="display:grid;gap:1.2vh;align-content:start">
+   <div class="card"><p class="cap">How it changed my design</p><div class="ba" style="margin:1vh 0;flex-wrap:wrap"><span class="pill">Enjoy</span>→<span class="pill">Participate</span>→<span class="pill">Notice</span>→<span class="pill" style="background:var(--bur);color:var(--cream)">Question</span></div><p class="small">No “beauty standards are bad” announcement. Visitors should <i>want</i> to take part first.</p></div>
+   <div class="card"><p class="cap">Participation</p><p class="small" style="margin:.6vh 0">The work needs the visitor to unfold. Co-creator? Not fully: the system sets the possible responses.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh;align-content:start">
+   <div class="card"><p class="cap">Levin + Lieberman · Manual Input Workstation, 2004</p><p class="small" style="margin:.6vh 0">Hands, shadows and gestures generate visuals and sound. Mine:</p><div class="ba" style="flex-wrap:wrap;margin:0"><span class="pill">Action</span>→<span class="pill">Beauty advice</span>→<span class="pill">More action</span>→<span class="pill">More advice</span></div><p class="small" style="margin-top:.8vh"><b>My question:</b> is the artwork the visuals — or discovering how the system responds to you?</p></div>
+   <div class="card"><p class="cap">Schemat · Wasser, 2004</p><p class="small" style="margin-top:.5vh">GPS audio shaped by where you move. Mine: the body is the interface — movement and touch trigger the room.</p></div>
+  </div>
+ </div>
+ <div class="hl r" style="margin-top:2.2vh">Immerse first. Disrupt second. <b>Reflect third.</b></div>
+ <p class="cap r" style="margin-top:1vh">The readings didn’t just support my idea. They changed how I built it.</p>
+</section>
+
+<section class="s an" id="s5"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="left:-5vw;top:-6vh;width:22vw"><use href="#pearls"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:4vw;top:9vh;width:2vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:46vw;top:9vh;width:1.4vw;animation-delay:-1.2s"><use href="#sp"/></svg>
+</div>
+ <div class="eyebrow r">05 · Form, medium, location</div>
+ <h2 class="r" style="margin-bottom:2vh">Why this form?</h2>
+ <div class="expl r"><span class="mock">Proposed installation visualization</span>
+  <div style="display:grid;gap:1vh"><div class="card"><b>MIRROR</b><span>→ self-observation</span></div><div class="card"><b>BEAUTY OBJECTS</b><span>→ familiar physical ritual</span></div><div class="card"><b>SENSORS</b><span>→ ordinary actions become triggers</span></div></div>
+  <div class="vanity card"><div class="mirror"><svg class="bulbs" viewBox="0 0 300 400"><ellipse cx="150" cy="200" rx="168" ry="222" fill="none" stroke="#fff8e8" stroke-width="11" stroke-linecap="round" stroke-dasharray="0 34"/></svg></div><div class="table"></div><p class="cap" style="margin-top:1.4vh">Vanity + mirror</p><p class="small" style="margin-top:.6vh">Exit → agency</p></div>
+  <div style="display:grid;gap:1vh"><div class="card"><b>PROGRAMMED SYSTEM</b><span>→ endless cycle of advice</span></div><div class="card"><b>SOUND · PINK LIGHT</b><span>→ intimacy · attraction, not criticism</span></div><div class="card"><b>ARCHITECTURE</b><span>→ controls attention + movement</span></div></div>
+ </div>
+ <div class="row" style="margin-top:2vh;gap:3vw;align-items:center">
+  <div class="col"><div class="pill" style="display:inline-block;background:var(--bur);color:var(--cream)">No beauty filter · No facial analysis</div>
+  <p class="hl" style="margin-top:1.2vh;padding-top:1.2vh;font-size:clamp(18px,2.2vw,34px)">The impossible standard is the problem. <b>Not the person looking into the mirror.</b></p></div>
+  <div class="col"><p class="cap">Black-box gallery, NYU Abu Dhabi</p>
+  <p class="small" style="margin:.5vh 0">Controlled light + sound · defined entrance / exit · room for sensors and projection · separate from the university’s everyday space</p>
+  <div class="plan"><span class="pill">Entrance</span>↓<span class="pill">Objects</span>↓<span class="pill">Vanity + mirror</span>↓<span class="pill">Interaction</span>↓<span class="pill">Exit</span></div></div>
+ </div>
+</section>
+
+<section class="s an" id="s6"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="right:-5vw;top:-6vh;width:22vw;transform:scaleX(-1)"><use href="#pearls"/></svg>
+<svg class="d fl2" viewBox="0 0 120 120" style="right:3vw;bottom:11vh;width:6vw;--r:12deg;opacity:.8"><use href="#cmp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:3vw;bottom:12vh;width:1.8vw"><use href="#sp"/></svg>
+</div>
+ <div class="eyebrow r">06 · Intersectional lens</div>
+ <div class="row" style="gap:3vw;align-items:center">
+  <div class="venn r">
+   <i style="left:28%;top:0">GENDER</i><i style="left:52%;top:10%">CULTURE</i><i style="left:56%;top:34%">RACE</i><i style="left:44%;top:54%">CLASS</i><i style="left:20%;top:56%">AGE</i><i style="left:2%;top:36%">TECH</i><i style="left:6%;top:12%">SOCIAL MEDIA</i><i style="left:28%;top:28%;width:44%">ADVERTISING</i>
+  </div>
+  <div class="col r">
+   <h2 style="font-size:clamp(26px,3.6vw,54px)">Who gets to define <em>beauty?</em></h2>
+   <p class="small" style="margin-top:1.5vh">Not universal. Not neutral. Not experienced the same by every woman.</p>
+   <div class="six">
+    <div class="card"><b class="cap">Class</b><div class="small">access to products, treatments, fashion, procedures</div></div>
+    <div class="card"><b class="cap">Race + culture</b><div class="small">which features are socially or historically privileged</div></div>
+    <div class="card"><b class="cap">Gender</b><div class="small">expectations of appearance and presentation</div></div>
+    <div class="card"><b class="cap">Platforms</b><div class="small">algorithms amplify particular ideals</div></div>
+   </div>
+   <p class="cap">My system never scans or categorizes</p>
+   <div class="not"><span class="pill">gender</span><span class="pill">race</span><span class="pill">age</span><span class="pill">body</span><span class="pill">face</span><span class="pill">attractiveness</span></div>
+   <div class="hl">The system doesn’t need to find something wrong. <b>It’s designed to keep finding something to improve.</b></div>
+  </div>
+ </div>
+</section>
+
+<section class="s" id="s7">
+ <div class="dc" style="z-index:2">
+<svg class="d pr" viewBox="0 0 400 300" style="left:0;top:-12vh;width:100vw;height:26vh" preserveAspectRatio="none"><use href="#pearls"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:47vw;top:20vh;width:2vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:4vw;bottom:15vh;width:1.6vw;animation-delay:-1s"><use href="#sp"/></svg>
+</div>
+ <div class="art">
+  <div>
+   <div class="eyebrow">07 · What already exists?</div>
+   <h3>Pipilotti Rist</h3>
+   <p class="tag">Open My Glade (Flatten), 2000</p>
+   <div class="frame">Add video still · © Pipilotti Rist, courtesy the artist, Hauser &amp; Wirth, Luhring Augustine</div>
+   <p class="small">Commissioned by the Public Art Fund for a Times Square screen: her face pressed against glass, makeup smeared, distorted — a challenge to media images of women.</p>
+   <div class="vs"><div><b>RIST</b>The audience observes the image.</div><div><b>MY PROJECT</b>The audience becomes the person being addressed.</div></div>
+   <p class="src">Sources: Public Art Fund / Times Square Arts; New Museum; Designboom</p>
+  </div>
+  <div>
+   <div class="eyebrow" style="color:var(--blush)">&nbsp;</div>
+   <h3>Lauren Lee McCarthy</h3>
+   <p class="tag">LAUREN, 2017</p>
+   <div class="frame">Add documentation · LAUREN Testimonials film &amp; 360 photography by David Leonard</div>
+   <p class="small" style="color:var(--blush)">McCarthy installs cameras, microphones and smart devices in people’s homes and attempts to become a human version of Amazon Alexa — exploring intimacy vs privacy, convenience vs agency.</p>
+   <div class="vs"><div><b>MCCARTHY</b>A system tries to help and respond to you.</div><div><b>MY PROJECT</b>A system gives you a task that can never be completed.</div></div>
+   <p class="src">Sources: artist’s statements via Gazelli Art House, Barbican, MIT Docubase</p>
+  </div>
+ </div>
+ <div style="position:absolute;left:0;right:0;bottom:9vh;text-align:center;pointer-events:none"><span class="pill" style="background:var(--cream);font-size:clamp(11px,1.2vw,16px)">Every solution creates another problem — and the visitor must stop trusting the system to finish</span></div>
+</section>
+
+<section class="s" id="s8"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="right:-4vw;top:-8vh;width:24vw;transform:scaleX(-1)"><use href="#pearls"/></svg>
+<svg class="d" viewBox="0 0 800 200" style="left:0;bottom:6vh;width:100vw;opacity:.45"><use href="#rib"/></svg>
+<svg class="d fl2" viewBox="0 0 100 160" style="left:-1vw;bottom:10vh;height:18vh;--r:-14deg;opacity:.85"><use href="#bottle"/></svg>
+<svg class="d fl2" viewBox="0 0 40 150" style="right:-.5vw;top:12vh;height:17vh;--r:30deg;opacity:.85"><use href="#lip"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:30vw;top:6vh;width:1.8vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:30vw;bottom:9vh;width:1.5vw;animation-delay:-1s"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:5vw;top:18vh;width:1.4vw;animation-delay:-2s"><use href="#sp"/></svg>
+</div>
+ <div class="eyebrow r">08 · Who am I assuming my audience is?</div>
+ <h2 class="r" style="font-size:clamp(24px,3.4vw,50px);margin-bottom:2vh">Assumption <em>→</em> refinement</h2>
+ <div class="as r">
+  <div class="card"><i>ASSUMED</i><u>Everyone understands “getting ready”</u><b>No beauty knowledge required</b></div>
+  <div class="card"><i>ASSUMED</i><u>Everyone wears makeup</u><b>Nothing needs to be applied</b></div>
+  <div class="card"><i>ASSUMED</i><u>Visitors obey the mirror</u><b>Refusing is a valid interaction</b></div>
+  <div class="card"><i>ASSUMED</i><u>Visitors sit at the vanity</u><b>Responds to standing or observing</b></div>
+  <div class="card"><i>ASSUMED</i><u>Everyone feels beauty pressure similarly</u><b>Never classifies identity or appearance</b></div>
+  <div class="card"><i>ASSUMED</i><u>Visitors stay long enough</u><b>The contradiction appears quickly</b></div>
+  <div class="card"><i>ASSUMED</i><u>Resistance = the artwork failed</u><b>Resistance may be the best interaction</b></div>
+  <div class="card win">If someone ignores the mirror and walks out, they have already answered the question.</div>
+ </div>
+ <div class="hl r" style="font-size:clamp(18px,2.4vw,36px)">The installation should not depend on my audience <b>behaving exactly how I expect.</b></div>
+</section>
+
+<section class="s" id="s9"><div class="dc">
+<svg class="d pr" viewBox="0 0 400 300" style="left:-4vw;top:-8vh;width:24vw;opacity:.8"><use href="#pearls"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="left:34vw;top:16vh;width:1.8vw"><use href="#sp"/></svg>
+<svg class="d tw" viewBox="0 0 40 40" style="right:34vw;top:28vh;width:1.4vw;animation-delay:-1.5s"><use href="#sp"/></svg>
+</div>
+ <div class="mirror"><svg class="bulbs" viewBox="0 0 300 400"><ellipse cx="150" cy="200" rx="168" ry="222" fill="none" stroke="#fff8e8" stroke-width="9" stroke-linecap="round" stroke-dasharray="0 30"/></svg><span id="rd">Ready?</span></div>
+ <div class="f" data-r="1"><div class="big">Who decides when<br>you’re <em>ready?</em></div><p class="small" style="margin-top:1.5vh">When does self-expression become self-correction? · Does interaction mean control? · Why do we trust systems that tell us how to improve ourselves?</p></div>
+ <div class="f keep"><p class="quote">The mirror never knew what you looked like.<br>It never knew whether anything needed to change.<br>It just knew how to keep you trying.</p></div>
+ <div class="f keep"><p class="quote" style="color:var(--bur)">The room never tells you that you’re ready.<br><em>You have to decide that yourself.</em></p></div>
+ <div class="f keep"><p class="cap" style="font-size:13px;letter-spacing:.4em">Almost Pretty Enough</p></div>
+</section>
+
+<div id="nav"><button class="btn" id="pv" aria-label="Previous">←</button><span id="num">01 / 09</span><button class="btn" id="nx" aria-label="Next">→</button></div>
+<script>
+(function(){
+var S=[].slice.call(document.querySelectorAll('.s')),i=0,N=S.length,bar=document.getElementById('bar'),num=document.getElementById('num');
+function frags(){return [].slice.call(S[i].querySelectorAll('.f'))}
+function show(n){i=Math.max(0,Math.min(N-1,n));S.forEach(function(s,k){s.classList.toggle('on',k===i)});
+ num.textContent=String(i+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');bar.style.width=((i+1)/N*100)+'%';
+ try{history.replaceState(null,'','#'+(i+1))}catch(e){}}
+function reveal(f){f.classList.add('show');if(f.dataset.r)document.getElementById('rd').textContent="Who decides?"}
+function next(){var f=frags().filter(function(x){return !x.classList.contains('show')});if(f.length){reveal(f[0]);return}show(i+1)}
+function prev(){var f=frags().filter(function(x){return x.classList.contains('show')});if(f.length){var l=f[f.length-1];l.classList.remove('show');if(l.dataset.r)document.getElementById('rd').textContent="Ready?";return}show(i-1)}
+document.getElementById('nx').onclick=next;document.getElementById('pv').onclick=prev;
+document.addEventListener('keydown',function(e){var k=e.key;
+ if(k==='ArrowRight'||k==='PageDown'||k===' '){e.preventDefault();next()}
+ else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();prev()}
+ else if(k==='Home')show(0);else if(k==='End')show(N-1);
+ else if(k==='f'||k==='F'){var d=document.documentElement;document.fullscreenElement?document.exitFullscreen():d.requestFullscreen&&d.requestFullscreen()}});
+var h=parseInt((location.hash||'').slice(1),10);show(h>0?h-1:0);
+})();
+</script>
+</body></html>
